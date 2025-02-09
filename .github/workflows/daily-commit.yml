@@ -12,10 +12,11 @@ jobs:
   commit:
     runs-on: ubuntu-latest
     steps:
+    steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          token: ${{ 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 }}
+          token: ${{  }}
           fetch-depth: 0  # Fetch entire commit history to avoid conflicts
 
       - name: Configure Git (22f2001447@ds.study.iitm.ac.in)
