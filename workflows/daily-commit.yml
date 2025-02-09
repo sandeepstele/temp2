@@ -16,12 +16,17 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GH_PAT }}
+          fetch-depth: 0  # Ensures full history is fetched
+
+      - name: Pull latest changes
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "22f2001447@ds.study.iitm.ac.in"
+          git pull origin main --rebase  # Pull latest changes before committing
 
       - name: Update repo with daily commit (22f2001447@ds.study.iitm.ac.in)
         run: |
           echo "Automated commit on $(date)" >> daily-commit-log.txt
-          git config --global user.name "GitHub Actions Bot"
-          git config --global user.email "22f2001447@ds.study.iitm.ac.in"
           git add .
           git commit -m "Daily automated commit: $(date)"
-          git push origin main
+          git push origin main  # Push changes
